@@ -1,0 +1,3 @@
+UPDATE public.banners SET image_url = 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80&fm=webp' WHERE id = (SELECT id FROM public.banners ORDER BY display_order NULLS LAST, id LIMIT 1 OFFSET 0);
+UPDATE public.banners SET image_url = 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600&q=80&fm=webp' WHERE id = (SELECT id FROM public.banners ORDER BY display_order NULLS LAST, id LIMIT 1 OFFSET 1);
+UPDATE public.banners SET image_url = 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&q=80&fm=webp' WHERE id = (SELECT id FROM public.banners ORDER BY display_order NULLS LAST, id LIMIT 1 OFFSET 2);

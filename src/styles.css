@@ -1,0 +1,223 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * HBH Collection design system — premium dark streetwear.
+ * Change brand colors here only. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-display: "Bebas Neue", "Impact", sans-serif;
+  --font-heading: "Montserrat", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--surface-2);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-gold: var(--gold);
+  --color-secondary: var(--surface-2);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--surface-2);
+  --color-muted-foreground: var(--text-muted);
+  --color-accent: var(--surface-2);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--primary);
+  --color-destructive-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-whatsapp: var(--whatsapp);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--gold);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.145 0 0); /* #0A0A0A */
+  --surface: oklch(0.18 0 0); /* #111111 */
+  --surface-2: oklch(0.225 0 0); /* #1A1A1A */
+  --foreground: oklch(1 0 0);
+  --text-muted: oklch(0.62 0 0); /* #888888 */
+  --primary: oklch(0.51 0.216 27.5); /* #CC0000 */
+  --primary-hover: oklch(0.44 0.19 27.5); /* #AA0000 */
+  --primary-foreground: oklch(1 0 0);
+  --gold: oklch(0.74 0.107 88); /* #C9A84C */
+  --border: oklch(0.26 0 0); /* #222222 */
+  --success: oklch(0.72 0.19 149); /* #22C55E */
+  --whatsapp: oklch(0.68 0.16 152);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --surface: oklch(0.18 0 0);
+  --surface-2: oklch(0.225 0 0);
+  --foreground: oklch(1 0 0);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: #000;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--surface);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface-2);
+    border-radius: 8px;
+  }
+}
+
+@utility display {
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  line-height: 0.92;
+}
+
+@utility heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+@utility gold-rule {
+  &::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    margin-top: 0.75rem;
+    background: var(--gold);
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: hbh-marquee 28s linear infinite;
+}
+
+@keyframes hbh-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes hbh-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@utility pop-in {
+  animation: hbh-pop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes hbh-slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@utility slide-in-left {
+  animation: hbh-slide-in-left 0.24s ease-out both;
+}
+
+/* Micro-interactions and premium polish */
+.hbh-card {
+  transition: transform 240ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 240ms;
+}
+.hbh-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+.hover-zoom {
+  transition: transform 700ms cubic-bezier(0.2,0.8,0.2,1);
+  transform-origin: center;
+}
+.hbh-card:hover .hover-zoom {
+  transform: scale(1.08);
+}
+.hbh-btn-primary {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.hbh-btn-primary:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+/* Skeleton placeholder */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 0%, var(--surface-2) 50%, var(--surface) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
