@@ -1,0 +1,9 @@
+[build]
+  # Use npm to run the project's build script so the environment matches local dev
+  command = "npm run build"
+  # TanStack Start / Nitro outputs static assets here — Netlify should publish this folder
+  publish = ".output/public"
+
+[context.production.environment]
+  # Use Node 20 on Netlify so `node:util` exports like `styleText` are available
+  NODE_VERSION = "20"
